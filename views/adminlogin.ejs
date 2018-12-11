@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Recipe Book</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="css/style1.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  </head>
+  <body style="background:url(http://beedy.nl/wp-content/uploads/2017/02/wood.jpg);background-size:cover;  background-size: 100%; overflow-x: hidden;">
+    <nav style="background-color:unset;">
+      <div class="row"> <!-- Keep within 1140px width -->
+
+        <ul class="main-nav js--main-nav">
+          <li><a href="/" class="brand-logo" style="color:orange;"><strong>Recipe Book</strong></a></li>
+          <!--
+          <li style="float:right;"><a href="/adminlogin">Admin Login</a></li>
+        -->
+        <% if(admin){ %>
+          <li class="waves-effect waves-light btn-small" style="float:right;"><a href="/logout">Logout</a></li>
+        <% }      %>
+
+
+        </ul>
+      </div>
+    </nav>
+    <!--
+    <form class="" action="/adminlogin" method="post">
+      <label for="admin_name">Username</label>
+        <input type="text" name="admin_name" required>
+        <br>
+        <label for="passwd">Password</label>
+        <input type="password" name="passwd" required>
+        <br>
+        <input type="submit" name="submit" required>
+    </form>
+-->
+    <div class="container" style="margin-left:30%;margin-top:10%;">
+    <div class="row">
+        <div class="col m6">
+            <h2 class="center-align" style="font-family: 'Kaushan Script', cursive; color: orange; font-size: 50px;">Login</h2>
+            <div class="row" >
+                <form class="col s12" action="/adminlogin" method="post">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="email" type="text" name="admin_name" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="pass" type="password" name="passwd" class="validate">
+                            <label  for="pass">Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m12">
+                            <p class="right-align">
+                                <button class="btn btn-large waves-effect waves-light" type="submit" name="submit">Login</button>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../js/materialize.js"></script>
+  <script src="../js/init.js"></script>
+  </body>
+</html>

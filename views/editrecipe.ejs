@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Recipe Book</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="../css/style1.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  </head>
+  <body style="background:url(http://beedy.nl/wp-content/uploads/2017/02/wood.jpg);background-size:cover;  max-width: 100%;overflow-x: hidden;">
+    <nav style="background-color:unset;">
+      <div class="row"> <!-- Keep within 1140px width -->
+
+        <ul class="main-nav js--main-nav">
+          <li><a href="/" class="brand-logo" style="color:orange;"><strong>Recipe Book</strong></a></li>
+          <!--
+          <li style="float:right;"><a href="/adminlogin">Admin Login</a></li>
+        -->
+        <% if(admin){ %>
+          <li class="waves-effect waves-light btn-small" style="float:right;"><a href="/logout">Logout</a></li>
+        <% }      %>
+        </ul>
+      </div>
+    </nav>
+
+<h2 style="font-family: 'Kaushan Script', cursive; color: orange; font-size: 50px; margin-left:30%;">Edit the recipe details</h2>
+  <div class="recipe-form" style="font-family: 'Kaushan Script', cursive; color: #f4ea8b; font-size: 20px;">
+    <form class="" enctype="multipart/form-data" action="/editrecipe/<%= description[0].rid  %>" method="post">
+      <br>
+      <label for="name">Recipe Name</label>
+        <input type="text" name="name" value="<%= description[0].name %>" required>
+        <br>
+        <label for="url">Enter Video URL</label>
+        <input type="text" name="url" value= "<%= description[0].url %>" required>
+        <br>
+        <label for="img">Enter Recipe Image</label>
+        <br>
+        <br>
+        <div class="file-field input-field">
+      <div >
+        <span>File</span>
+        <input type="file" name="img"  accept="image/png, image/jpeg" >
+      </div>
+    </div>
+        <br>
+        <br>
+          <table>
+            <thead>
+              <tr>
+                <th>Ingredient Name</th>
+                <th>Ingredient Quantity</th>
+              </tr>
+            </thead>
+            <tbody id="addingredient">
+                <% for(var i=0;i<ingredients.length;i++){ %>
+              <tr>
+                <td><input type="text" name="ingredients[<%= i %>][rcname]"  value="<%= ingredients[i].ingredient %>" ></td>
+                <td>  <input type="text" name="ingredients[<%= i %>][quantity]" value="<%= ingredients[i].quantity %>" ></td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+          <br>
+          <br>
+        <button type="button" class="waves-effect waves-light btn-small" onclick="addIngredient(<%= ingredients.length %>)">Add Ingredient</button>
+        <br>
+        <br>
+        <label for="directions">Directions to Cook</label>
+        <div class="input-field col s12">
+          <textarea id="textarea1" name="directions" class="materialize-textarea"><%= description[0].directions %></textarea>
+        </div>
+        <br>
+        <br>
+        <input type="submit" name="submit" class="waves-effect waves-light btn-small" value="submit">
+
+    </form>
+  </div>
+
+
+
+    <!--  Scripts-->
+    <script type="text/javascript">
+      var ind=1;
+      var add = document.getElementById('addingredient');
+    function addIngredient(ind)
+    {
+      add.insertAdjacentHTML('beforeend', '<tr><td><input type="text" name="ingredients['+ind+'][rcname]" ></td><td><input type="text" name="ingredients['+ind+'][quantity]" ></td></tr>' );
+    }
+    </script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../js/materialize.js"></script>
+  <script src="../js/init.js"></script>
+  </body>
+</html>

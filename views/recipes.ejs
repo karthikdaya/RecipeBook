@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Recipe Book</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  </head>
+  <body style="background:url(http://beedy.nl/wp-content/uploads/2017/02/wood.jpg);background-size:cover;  background-size: 100%; overflow-x: hidden;">
+    <nav style="background-color:unset;">
+      <div class="row"> <!-- Keep within 1140px width -->
+
+        <ul class="main-nav js--main-nav">
+          <li><a href="/" class="brand-logo" style="color:orange;"><strong>Recipe Book</strong></a></li>
+          <li style="float:right;"><a class="waves-effect waves-light btn-small" href="/ingredientsearch">Ingredient Search</a></li>
+          <% if(admin){ %>
+            <li style="float:right;"><a class="waves-effect waves-light btn-small" href="/logout">Logout</a></li>
+            <li style="float:right;"><a class="waves-effect waves-light btn-small" href="/addrecipe">Add Recipe</a></li>
+          <% } else { %>
+           <li style="float:right;"><a class="waves-effect waves-light btn-small" href="/adminlogin">Admin Login</a></li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+
+  <div>
+    <form action="/search" method="post">
+      <div  >
+        <input id="search" name="search" style="color:white;border-bottom:none;" type="search" placeholder="Search your favourite recipe here" required>
+
+      </div>
+    </form>
+  </div>
+
+
+  <% for(var i=0;i<result.length;i=i+3){ %>
+  <div class="row">
+      <% for(var j=i;j<result.length && j < i+3 ;j++){ %>
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" width="450px" height="250px" src=<%=result[j].image %>>
+        </div>
+
+        <div class="card-content">
+          <p><a href="/recipe/<%= result[j].rid %>"><span class="card-title activator grey-text text-darken-4"><%= result[j].name %></span></a></p>
+            <% if(admin) { %>
+              <div class="card-action">
+                <a class="waves-effect waves-light btn-small" href="/editrecipe/<%= result[j].rid %>">Edit</a>
+              </div>
+            <% } %>
+        </div>
+      </div>
+    </div>
+        <% } %>
+  </div>
+        <% } %>
+
+    <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  </body>
+</html>

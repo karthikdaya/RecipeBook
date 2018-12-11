@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <title>Recipe Book</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <!--  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>-->
+  </head>
+  <body style="background:url(http://beedy.nl/wp-content/uploads/2017/02/wood.jpg);background-size:cover;  background-size: 100%; overflow-x: hidden;">
+<nav style="background-color:unset;">
+  <div class="row"> <!-- Keep within 1140px width -->
+
+    <ul class="main-nav js--main-nav">
+      <li><a href="/" class="brand-logo" style="color:orange;"><strong>Recipe Book</strong></a></li>
+
+      <% if(admin){ %>
+        <li style="float:right;"><a class="waves-effect waves-light btn-small" href="/logout">Logout</a></li>
+        <li style="float:right;"><a class="waves-effect waves-light btn-small" href="/addrecipe">Add Recipe</a></li>
+      <% }  else {%>
+       <li style="float:right;"><a class="waves-effect waves-light btn-small" href="/adminlogin">Admin Login</a></li>
+      <% } %>
+
+    </ul>
+  </div>
+</nav>
+  <h4 style="font-family: 'Kaushan Script', cursive; color: orange; font-size: 50px; margin-left:33%;"><%= description[0].name %> </h4>
+  <div class="row">
+    <div class="col s10 m8" style="width:100%; ">
+      <div class="card medium">
+
+          <iframe style="width:100%;height:100%; border: 5px solid;"
+              src=<%= description[0].url %> >
+          </iframe>
+
+      </div>
+  </div>
+  </div>
+
+
+  <div class="row">
+
+    <div class="col s12 m8" style="width:80%; padding-left:20%; ">
+      <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <table class="responsive-table" style="background-image:url(http://beedy.nl/wp-content/uploads/2017/02/wood.jpg);font-family: 'Kaushan Script', cursive; color: #f4ea8b; font-size: 20px;">
+
+                <thead style=" border-style: ridge;
+          border-width:5px; color: orange;">
+                  <tr>
+                      <th>Ingredient</th>
+                      <th>Quantity</th>
+                  </tr>
+                </thead>
+                <tbody style=" border-style: ridge;
+          border-width:5px; ">
+                  <% for(var i=0;i<ingredients.length;i++) { %>
+                  <tr>
+                    <td><%= ingredients[i].ingredient %></td>
+                    <td><%= ingredients[i].quantity %></td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+        </div>
+      </div>
+  </div>
+  </div>
+
+  <div style="margin:5% 15%;display:inline-block;font-family: 'Kaushan Script', cursive; color: orange;">
+  <h4><strong>Directions</strong></h4>
+    <div style="background-image:url(http://beedy.nl/wp-content/uploads/2017/02/wood.jpg);border-style: ridge;font-family: 'Kaushan Script', cursive; color: #f4ea8b; font-size: 25px;">
+      <p><%= description[0].directions %> </p>
+    </div>
+</div>
+
+
+
+    <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../js/materialize.js"></script>
+  <script src="../js/init.js"></script>
+  </body>
+</html>
+<!--
+  overflow-x: 0;
+-->

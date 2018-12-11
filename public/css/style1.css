@@ -1,0 +1,30 @@
+form label{
+    color:black;
+}
+
+.recipe-form
+{
+  width:50%;
+  margin:5% 22%;
+}
+.recipe-form label,th
+{
+  font-family: 'Kaushan Script', cursive;
+  color: orange;
+  font-size: 22px;
+}
+.recipe-form input,textarea{
+  font-family: 'Kaushan Script', cursive;
+  color: #f4ea8b;
+  font-size: 20px;
+}
+
+
+
+#addingredient tr{
+  border-bottom: none;
+
+}
+#addingredient th,td{
+  padding: 0 5px;
+}
